@@ -1,0 +1,19 @@
+<button mat-raised-button color="primary" routerLink="/create">
+  Créer une commande
+</button>
+
+<br><br>
+
+<h2>Liste des commandes</h2>
+
+<p>Nombre de commandes : {{ commandes.length }}</p>
+
+<ul>
+  <li *ngFor="let order of commandes">
+    {{ order.id }} - {{ order.customer }}
+
+    <button (click)="delete(order.id)">
+      Supprimer
+    </button>
+  </li>
+</ul>
