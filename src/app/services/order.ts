@@ -17,7 +17,13 @@ export class OrderService {
   createOrder(order: Order): Observable<void> {
     return this.http.post<void>(this.apiUrl, order);
   }
+  updateOrder(id: number, order: Order): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, order);
+  }
   deleteOrder(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+  getOrder(id: number): Observable<Order> {
+    return this.http.get<Order>(`${this.apiUrl}/${id}`);
   }
 }
