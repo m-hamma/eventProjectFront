@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-order-update',
   standalone: true,
@@ -47,7 +47,7 @@ export class OrderUpdate implements OnInit {
     this.orderService.updateOrder(this.id, order).subscribe(() => {
       console.log('Commande mise à jour');
 
-      window.location.href = '/';
+      this.router.navigate(['/']);
     });
   }
 }

@@ -1,15 +1,23 @@
-<li *ngFor="let order of commandes">
-  {{ order.customer }}
+<a routerLink="/create">
+  Ajouter une commande
+</a>
+<br/>
+<ul>
+  <li *ngFor="let order of commandes">
 
-  <button
-    *ngIf="order.id != null"
-    [routerLink]="['/orders/update', order.id]">
-    Modifier
-  </button>
+    {{ order.customer }}
 
-  <button
-    *ngIf="order.id != null"
-    (click)="delete(order.id)">
-    Supprimer
-  </button>
-</li>
+    <button
+      *ngIf="order.id != null"
+      [routerLink]="['/orders/update', order.id]">
+      Modifier
+    </button>
+
+
+    <button
+      (click)="delete(order.id)">
+      Supprimer
+    </button>
+
+  </li>
+</ul>
