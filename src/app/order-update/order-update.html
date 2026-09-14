@@ -1,0 +1,18 @@
+<h2>Mise à jour d'une commande</h2>
+
+<mat-form-field appearance="outline">
+  <mat-label>Client</mat-label>
+  <input
+    matInput
+    name="customer"
+    [(ngModel)]="customer">
+</mat-form-field>
+
+<p>Valeur customer : {{ customer }}</p>
+
+<button
+  mat-raised-button
+  color="primary"
+  (click)="update()">
+  Enregistrer
+</button>
