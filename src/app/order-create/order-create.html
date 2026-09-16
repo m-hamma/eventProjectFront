@@ -1,17 +1,126 @@
-<h2>Création d'une commande</h2>
+<div class="container">
 
-<mat-form-field appearance="outline">
-  <mat-label>Client</mat-label>
-  <input
-    matInput
-    [(ngModel)]="customer">
-</mat-form-field>
+  <h2>Création d'une commande</h2>
 
-<p>Client saisi : {{ customer }}</p>
+  <div class="header-row">
 
-<button
-  mat-raised-button
-  color="primary"
-  (click)="save()">
-  Enregistrer
-</button>
+    <mat-form-field appearance="outline">
+      <mat-label>Client</mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="customer"
+        name="customer"
+        required
+        #customerCtrl="ngModel">
+
+      <mat-error *ngIf="customerCtrl.invalid && customerCtrl.touched">
+        Le client est obligatoire
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="field">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="description" name="description">
+    </mat-form-field>
+
+  </div>
+
+  <h3>Articles</h3>
+
+  <div
+    class="item-row"
+    *ngFor="let item of items; let i = index">
+
+    <mat-form-field appearance="outline" class="product">
+      <mat-label>Produit</mat-label>
+
+
+      <mat-select
+        [(ngModel)]="item.product"
+        (selectionChange)="onProductChange(item)"
+        name="product{{i}}"
+        required
+        #productCtrl="ngModel">
+
+        <mat-option
+          *ngFor="let product of products"
+          [value]="product">
+
+          {{ product.code }} - {{ product.libelle }}
+
+        </mat-option>
+
+      </mat-select>
+      <mat-error
+        *ngIf="productCtrl.invalid && productCtrl.touched">
+        Le produit est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="qty">
+      <mat-label>Qté</mat-label>
+
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="item.quantity"
+        name="quantity{{ i }}"
+        min="1"
+        required
+        #qtyCtrl="ngModel">
+      <mat-error *ngIf="qtyCtrl.errors?.['required']">
+        La quantité est obligatoire
+      </mat-error>
+      <mat-error *ngIf="qtyCtrl.errors?.['min']">
+        La quantité doit être supérieure à 0
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="price">
+      <mat-label>Prix</mat-label>
+
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="item.unitPrice"
+        name="unitPrice{{ i }}"
+        readonly>
+    </mat-form-field>
+
+    <div class="amount">
+      {{ item.quantity * item.unitPrice }} €
+    </div>
+
+    <button
+      mat-icon-button
+      color="warn"
+      type="button"
+      (click)="removeItem(i)">
+      ❌
+    </button>
+
+  </div>
+
+  <div class="actions">
+
+    <button
+      mat-raised-button
+      type="button"
+      (click)="addItem()">
+
+      Ajouter un article
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()"
+      [disabled]="!customer.trim()">
+      Enregistrer
+    </button>
+
+  </div>
+
+</div>

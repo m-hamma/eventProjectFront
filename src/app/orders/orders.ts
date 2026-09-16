@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Order } from '../models/order';
-
+import { MatCardModule } from '@angular/material/card';
 import { OrderService } from '../services/order';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-orders',
-  imports: [CommonModule, RouterLink, MatToolbarModule],
+  imports: [CommonModule, RouterLink, MatToolbarModule, MatCardModule, MatIconModule],
   templateUrl: './orders.html',
   styleUrl: './orders.css',
 })

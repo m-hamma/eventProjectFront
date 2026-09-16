@@ -1,23 +1,52 @@
-<a routerLink="/create">
-  Ajouter une commande
-</a>
-<br/>
-<ul>
-  <li *ngFor="let order of commandes">
+<div class="header">
+  <button
+    mat-raised-button
+    color="primary"
+    routerLink="/create">
+    Ajouter une commande
+  </button>
+</div>
 
-    {{ order.customer }}
+<mat-card
+  *ngFor="let order of commandes"
+  class="order-card">
 
-    <button
-      *ngIf="order.id != null"
-      [routerLink]="['/orders/update', order.id]">
-      Modifier
-    </button>
+  <div class="order-item">
 
+    <div class="order-info">
+      <h3>{{ order.customer }}</h3>
 
-    <button
-      (click)="delete(order.id)">
-      Supprimer
-    </button>
+      <p>
+        {{ order.status }} • Créée le :
+        {{ order.createdAt | date:'dd/MM/yyyy HH:mm' }}
+      </p>
+      <div *ngIf="order.items?.length">
+        <p>
+          <strong>Articles :</strong>
+          <span *ngFor="let item of order.items; let last = last">
+      {{ item.product }}
+      ({{ item.quantity }} × {{ item.unitPrice }} €){{ !last ? ', ' : '' }}
+    </span>
+        </p>
+      </div>
+    </div>
 
-  </li>
-</ul>
+    <div class="actions">
+      <button
+        mat-icon-button
+        color="primary"
+        [routerLink]="['/orders/update', order.id]">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="delete(order.id!)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+  </div>
+
+</mat-card>
