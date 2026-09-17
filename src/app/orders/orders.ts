@@ -6,10 +6,17 @@ import { Order } from '../models/order';
 import { MatCardModule } from '@angular/material/card';
 import { OrderService } from '../services/order';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-orders',
-  imports: [CommonModule, RouterLink, MatToolbarModule, MatCardModule, MatIconModule],
+  imports: [
+    MatButtonModule,CommonModule,
+    RouterLink,
+    MatToolbarModule,
+    MatCardModule,
+    MatIconModule,
+  ],
   templateUrl: './orders.html',
   styleUrl: './orders.css',
 })

@@ -78,7 +78,7 @@ export class OrderUpdate implements OnInit {
     this.orderService.updateOrder(this.id, order).subscribe({
       next: () => {
         console.log('Commande mise à jour');
-        this.router.navigate(['/']);
+        this.router.navigate(['/orders']);
       },
       error: (err) => {
         console.error('Erreur mise à jour', err);

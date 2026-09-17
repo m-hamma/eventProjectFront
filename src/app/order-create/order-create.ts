@@ -67,7 +67,7 @@ export class OrderCreate {
     this.orderService.createOrder(order).subscribe({
       next: () => {
         console.log('Commande créée');
-        this.router.navigate(['/']);
+        this.router.navigate(['/orders']);
       },
       error: (err) => {
         console.error('Erreur création', err);
