@@ -1,1 +1,29 @@
+<mat-toolbar color="primary">
+  <span>Gestion des commandes</span>
+
+  <span class="spacer"></span>
+
+  <a mat-button
+     routerLink="/"
+     routerLinkActive="active-link"
+     [routerLinkActiveOptions]="{ exact: true }">
+    Accueil
+  </a>
+
+  <a mat-button
+     routerLink="/orders"
+     routerLinkActive="active-link">
+    Liste
+  </a>
+
+  <a mat-button
+     routerLink="/search"
+     routerLinkActive="active-link">
+    Recherche
+  </a>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+
 <router-outlet></router-outlet>

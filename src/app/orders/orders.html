@@ -24,7 +24,7 @@
         <p>
           <strong>Articles :</strong>
           <span *ngFor="let item of order.items; let last = last">
-      {{ item.product }}
+      {{ item.product?.code }} - {{ item.product?.libelle }}
       ({{ item.quantity }} × {{ item.unitPrice }} €){{ !last ? ', ' : '' }}
     </span>
         </p>
