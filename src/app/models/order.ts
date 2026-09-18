@@ -1,8 +1,8 @@
+import { Client } from './client';
 import { OrderItem } from './orderItem';
-
 export interface Order {
   id?: number;
-  customer: string;
+  client?: Client;
   description?: string;
   createdAt?: string;
   updatedAt?: string;

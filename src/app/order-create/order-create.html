@@ -7,14 +7,23 @@
     <mat-form-field appearance="outline">
       <mat-label>Client</mat-label>
 
-      <input
-        matInput
-        [(ngModel)]="customer"
-        name="customer"
+      <mat-select
+        [(ngModel)]="client"
+        name="client"
         required
-        #customerCtrl="ngModel">
+        #clientCtrl="ngModel">
 
-      <mat-error *ngIf="customerCtrl.invalid && customerCtrl.touched">
+        <mat-option
+          *ngFor="let client of clients"
+          [value]="client">
+
+          {{ client.nom }}
+
+        </mat-option>
+
+      </mat-select>
+
+      <mat-error *ngIf="clientCtrl.invalid && clientCtrl.touched">
         Le client est obligatoire
       </mat-error>
 
@@ -22,7 +31,11 @@
 
     <mat-form-field appearance="outline" class="field">
       <mat-label>Description</mat-label>
-      <input matInput [(ngModel)]="description" name="description">
+
+      <input
+        matInput
+        [(ngModel)]="description"
+        name="description">
     </mat-form-field>
 
   </div>
@@ -35,7 +48,6 @@
 
     <mat-form-field appearance="outline" class="product">
       <mat-label>Produit</mat-label>
-
 
       <mat-select
         [(ngModel)]="item.product"
@@ -53,10 +65,11 @@
         </mat-option>
 
       </mat-select>
-      <mat-error
-        *ngIf="productCtrl.invalid && productCtrl.touched">
+
+      <mat-error *ngIf="productCtrl.invalid && productCtrl.touched">
         Le produit est obligatoire
       </mat-error>
+
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="qty">
@@ -70,12 +83,15 @@
         min="1"
         required
         #qtyCtrl="ngModel">
+
       <mat-error *ngIf="qtyCtrl.errors?.['required']">
         La quantité est obligatoire
       </mat-error>
+
       <mat-error *ngIf="qtyCtrl.errors?.['min']">
         La quantité doit être supérieure à 0
       </mat-error>
+
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="price">
@@ -111,14 +127,17 @@
       (click)="addItem()">
 
       Ajouter un article
+
     </button>
 
     <button
       mat-raised-button
       color="primary"
       (click)="save()"
-      [disabled]="!customer.trim()">
+      [disabled]="!client">
+
       Enregistrer
+
     </button>
 
   </div>
