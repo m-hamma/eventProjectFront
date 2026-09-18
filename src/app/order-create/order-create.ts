@@ -2,13 +2,18 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { OrderService } from '../services/order';
-import { Order } from '../models/order';
-import { ProductService, Product } from '../services/product';
 import { MatSelectModule } from '@angular/material/select';
+
+import { OrderService } from '../services/order';
+import { ProductService, Product } from '../services/product';
+import { ClientService } from '../services/client';
+
+import { Order } from '../models/order';
+import { Client } from '../models/client';
 
 @Component({
   selector: 'app-order-create',
@@ -25,8 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './order-create.css',
 })
 export class OrderCreate {
-  customer = '';
   description = '';
+
   items = [
     {
       product: null,
@@ -34,36 +39,60 @@ export class OrderCreate {
       unitPrice: 0,
     },
   ];
+
   products: Product[] = [];
+
+  clients: Client[] = [];
+
+  client?: Client;
 
   constructor(
     private orderService: OrderService,
     private productService: ProductService,
+    private clientService: ClientService,
     private router: Router,
   ) {}
+
   ngOnInit(): void {
     this.productService.getProducts().subscribe((products) => {
       this.products = products;
-      console.log(products);
+    });
+
+    this.clientService.getClients().subscribe((clients) => {
+      this.clients = clients;
     });
   }
 
   save(): void {
+    if (!this.client) {
+      alert('Le client est obligatoire');
+      return;
+    }
+
     if (this.items.some((item) => !item.product)) {
       alert('Le produit est obligatoire');
       return;
     }
+
     if (this.items.some((item) => item.quantity <= 0)) {
       alert('La quantité doit être supérieure à 0');
       return;
     }
+
     const order: Order = {
-      customer: this.customer,
+      client: {
+        id: this.client.id,
+        code: this.client.code,
+        nom: this.client.nom,
+        email: this.client.email,
+        telephone: this.client.telephone,
+      },
       description: this.description,
       status: 'CREATED',
       items: this.items,
     };
 
+    console.log('ORDER =', JSON.stringify(order, null, 2));
     this.orderService.createOrder(order).subscribe({
       next: () => {
         console.log('Commande créée');
@@ -74,6 +103,7 @@ export class OrderCreate {
       },
     });
   }
+
   addItem(): void {
     this.items.push({
       product: null,
@@ -85,9 +115,8 @@ export class OrderCreate {
   removeItem(index: number): void {
     this.items.splice(index, 1);
   }
-  onProductChange(item: any): void {
-    console.log('Produit sélectionné = ', item.product);
 
+  onProductChange(item: any): void {
     if (item.product) {
       item.unitPrice = item.product.prix;
     }
