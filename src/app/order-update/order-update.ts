@@ -122,7 +122,9 @@ export class OrderUpdate implements OnInit {
   compareProducts(p1: Product | null, p2: Product | null): boolean {
     return p1?.id === p2?.id;
   }
-
+  compareClients(c1: Client | null, c2: Client | null): boolean {
+    return c1?.id === c2?.id;
+  }
   onProductChange(item: any): void {
     if (item.product) {
       item.unitPrice = item.product.prix;
