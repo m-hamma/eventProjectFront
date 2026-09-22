@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface Product {
+export interface ProductService {
   id: number;
   code: string;
   libelle: string;
@@ -16,7 +16,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
+  getProducts(): Observable<ProductService[]> {
+    return this.http.get<ProductService[]>(this.apiUrl);
   }
 }

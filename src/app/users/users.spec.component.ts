@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { OrderUpdate } from './order-update';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-describe('OrderUpdate', () => {
-  let component: OrderUpdate;
-  let fixture: ComponentFixture<OrderUpdate>;
+import { UsersComponent } from './users.component';
+
+describe('UsersComponent', () => {
+  let component: UsersComponent;
+  let fixture: ComponentFixture<UsersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OrderUpdate],
+      imports: [UsersComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OrderUpdate);
+    fixture = TestBed.createComponent(UsersComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

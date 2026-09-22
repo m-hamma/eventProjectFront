@@ -1,8 +1,8 @@
-import { Product } from '../services/product';
+import { ProductService } from '../services/product.service';
 
 export interface OrderItem {
   id?: number;
-  product: Product | null;
+  product: ProductService | null;
   quantity: number;
   unitPrice: number;
 }

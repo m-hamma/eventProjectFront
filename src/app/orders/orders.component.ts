@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Order } from '../models/order';
 import { MatCardModule } from '@angular/material/card';
-import { OrderService } from '../services/order';
+import { OrderService } from '../services/order.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -17,10 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatIconModule,
   ],
-  templateUrl: './orders.html',
-  styleUrl: './orders.css',
+  templateUrl: './orders.component.html',
+  styleUrl: './orders.component.css',
 })
-export class Orders implements OnInit {
+export class OrdersComponent implements OnInit {
   commandes: Order[] = [];
 
   constructor(

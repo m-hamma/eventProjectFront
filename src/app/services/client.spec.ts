@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { Client } from './client';
+import { ClientService } from './client.service';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { Client } from '../models/client';
 
 describe('Client', () => {
   let service: Client;

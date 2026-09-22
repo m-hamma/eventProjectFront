@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatToolbarModule,
     MatButtonModule
   ],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
-export class App {}
+export class AppComponent {}

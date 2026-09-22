@@ -8,9 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 
-import { OrderService } from '../services/order';
-import { ProductService, Product } from '../services/product';
-import { ClientService } from '../services/client';
+import { OrderService } from '../services/order.service';
+import { ProductService } from '../services/product.service';
+import { ClientService } from '../services/client.service';
 
 import { Order } from '../models/order';
 import { Client } from '../models/client';
@@ -26,16 +26,16 @@ import { Client } from '../models/client';
     MatButtonModule,
     MatSelectModule,
   ],
-  templateUrl: './order-update.html',
+  templateUrl: './order-update.component.html',
 })
-export class OrderUpdate implements OnInit {
+export class OrderUpdateComponent implements OnInit {
   id = 0;
 
   description = '';
 
   items: any[] = [];
 
-  products: Product[] = [];
+  products: ProductService[] = [];
 
   clients: Client[] = [];
 
@@ -119,7 +119,7 @@ export class OrderUpdate implements OnInit {
     this.items.splice(index, 1);
   }
 
-  compareProducts(p1: Product | null, p2: Product | null): boolean {
+  compareProducts(p1: ProductService | null, p2: ProductService | null): boolean {
     return p1?.id === p2?.id;
   }
   compareClients(c1: Client | null, c2: Client | null): boolean {

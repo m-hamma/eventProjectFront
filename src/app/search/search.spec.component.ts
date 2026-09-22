@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Orders } from './orders';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-describe('Orders', () => {
-  let component: Orders;
-  let fixture: ComponentFixture<Orders>;
+import { SearchComponent } from './search.component';
+
+describe('SearchComponent', () => {
+  let component: SearchComponent;
+  let fixture: ComponentFixture<SearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Orders],
+      imports: [SearchComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Orders);
+    fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

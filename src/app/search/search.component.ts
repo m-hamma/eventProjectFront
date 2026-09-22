@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-search',
   imports: [MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
-  templateUrl: './search.html',
-  styleUrl: './search.css',
+  templateUrl: './search.component.html',
+  styleUrl: './search.component.css',
 })
-export class Search {}
+export class SearchComponent {}

@@ -1,0 +1,9 @@
+<h2>Gestion des utilisateurs</h2>
+
+<p>Nombre : {{ users.length }}</p>
+
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.username }} - {{ user.role }}
+  </li>
+</ul>

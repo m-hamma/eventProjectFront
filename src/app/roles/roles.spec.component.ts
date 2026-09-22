@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { OrderCreate } from './order-create';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-describe('OrderCreate', () => {
-  let component: OrderCreate;
-  let fixture: ComponentFixture<OrderCreate>;
+import { RolesComponent } from './roles.component';
+
+describe('RolesComponent', () => {
+  let component: RolesComponent;
+  let fixture: ComponentFixture<RolesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OrderCreate],
+      imports: [RolesComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OrderCreate);
+    fixture = TestBed.createComponent(RolesComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

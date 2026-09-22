@@ -1,0 +1,9 @@
+<h2>Gestion des roles</h2>
+
+<p>Nombre : {{ roles.length }}</p>
+
+<ul>
+  <li *ngFor="let role of roles">
+    {{ role.code }} - {{ role.libelle }}
+  </li>
+</ul>

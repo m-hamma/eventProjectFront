@@ -8,9 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 
-import { OrderService } from '../services/order';
-import { ProductService, Product } from '../services/product';
-import { ClientService } from '../services/client';
+import { OrderService } from '../services/order.service';
+import { ProductService } from '../services/product.service';
+import { ClientService } from '../services/client.service';
 
 import { Order } from '../models/order';
 import { Client } from '../models/client';
@@ -26,10 +26,10 @@ import { Client } from '../models/client';
     MatInputModule,
     MatButtonModule,
   ],
-  templateUrl: './order-create.html',
-  styleUrl: './order-create.css',
+  templateUrl: './order-create.component.html',
+  styleUrl: './order-create.component.css',
 })
-export class OrderCreate {
+export class OrderCreateComponent {
   description = '';
 
   items = [
@@ -40,7 +40,7 @@ export class OrderCreate {
     },
   ];
 
-  products: Product[] = [];
+  products: ProductService[] = [];
 
   clients: Client[] = [];
 
