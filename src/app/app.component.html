@@ -1,5 +1,9 @@
+@if (authService.isAuthenticated()) {
+
 <mat-toolbar color="primary">
-  <span>Gestion des commandes</span>
+
+  <span>Event Project</span>
+
 
   <span class="spacer"></span>
 
@@ -21,18 +25,19 @@
      routerLinkActive="active-link">
     Recherche
   </a>
-
-  <a mat-button
-     routerLink="/users"
-     routerLinkActive="active-link">
-    Users
-  </a>
-
+    <a mat-button
+       routerLink="/users"
+       routerLinkActive="active-link">Users</a>
   <a mat-button
      routerLink="/roles"
-     routerLinkActive="active-link">
-    Roles
-  </a>
+     routerLinkActive="active-link">Roles</a>
+
+  <button mat-button (click)="logout()">
+    Déconnexion
+  </button>
+
 </mat-toolbar>
+
+}
 
 <router-outlet></router-outlet>
