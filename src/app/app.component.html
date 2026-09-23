@@ -25,12 +25,14 @@
      routerLinkActive="active-link">
     Recherche
   </a>
+  @if (authService.hasRole('ADMIN')) {
   <a mat-button
      routerLink="/users"
      routerLinkActive="active-link">Users</a>
   <a mat-button
      routerLink="/roles"
      routerLinkActive="active-link">Roles</a>
+  }
 
   <span>{{ authService.getUserName() }}</span>
   &nbsp;
