@@ -1,25 +1,41 @@
-<h2>Connexion</h2>
+<mat-card>
 
-<form (ngSubmit)="login()">
+  <mat-card-header>
+    <mat-card-title>
+      Connexion
+    </mat-card-title>
+  </mat-card-header>
 
-  <div>
-    <label>Utilisateur</label>
-    <input
-      type="text"
-      name="username"
-      [(ngModel)]="username">
-  </div>
+  <mat-card-content>
+   <form (ngSubmit)="login()">
 
-  <div>
-    <label>Mot de passe</label>
-    <input
-      type="password"
-      name="password"
-      [(ngModel)]="password">
-  </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Utilisateur</mat-label>
+        <input
+          matInput
+          name="userName"
+          autocomplete="userName"
+          [(ngModel)]="userName">
+      </mat-form-field>
 
-  <button type="submit">
-    Se connecter
-  </button>
+      <mat-form-field appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          [(ngModel)]="password">
+      </mat-form-field>
 
-</form>
+     <button
+       mat-flat-button
+       color="primary"
+       type="submit">
+       Se connecter
+     </button>
+
+
+   </form>
+  </mat-card-content>
+</mat-card>

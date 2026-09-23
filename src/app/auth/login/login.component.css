@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+mat-card {
+  width: 420px;
+  padding: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+button {
+  width: 100%;
+}
+mat-card-title {
+  text-align: center;
+  width: 100%;
+}
+.login-title {
+  width: 100%;
+  text-align: center;
+}
+

@@ -8,7 +8,7 @@
   <span class="spacer"></span>
 
   <a mat-button
-     routerLink="/"
+     routerLink="/accueil"
      routerLinkActive="active-link"
      [routerLinkActiveOptions]="{ exact: true }">
     Accueil
@@ -25,14 +25,18 @@
      routerLinkActive="active-link">
     Recherche
   </a>
-    <a mat-button
-       routerLink="/users"
-       routerLinkActive="active-link">Users</a>
+  <a mat-button
+     routerLink="/users"
+     routerLinkActive="active-link">Users</a>
   <a mat-button
      routerLink="/roles"
      routerLinkActive="active-link">Roles</a>
 
-  <button mat-button (click)="logout()">
+  <span>{{ authService.getUserName() }}</span>
+  &nbsp;
+  <button
+    mat-flat-button
+    color="primary" (click)="logout()">
     Déconnexion
   </button>
 

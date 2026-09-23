@@ -12,31 +12,53 @@ import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './auth/guards/auth-guard';
 import { SearchComponent } from './search/search.component';
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/accueil',
+    pathMatch: 'full',
+  },
+
   { path: 'login', component: LoginComponent },
 
   {
-    path: '',
+    path: 'accueil',
     component: HomeComponent,
     canActivate: [authGuard],
   },
+
   {
     path: 'search',
     component: SearchComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
+
   {
     path: 'orders',
     component: OrdersComponent,
     canActivate: [authGuard],
   },
+
   {
     path: 'users',
     component: UsersComponent,
     canActivate: [authGuard],
   },
+
   {
     path: 'roles',
     component: RolesComponent,
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'create',
+    component: OrderCreateComponent,
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'orders/update/:id',
+    component: OrderUpdateComponent,
     canActivate: [authGuard],
   },
 ];
