@@ -1,2 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/azure-blue.css';
+.breadcrumb a {
+  cursor: pointer;
+  color: #1976d2;
+  text-decoration: underline;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-weight: 600;
+  color: #333;
+}
+.page-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+}

@@ -47,4 +47,8 @@
   color: #666;
   font-size: 14px;
 }
-
+.header-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

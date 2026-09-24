@@ -17,7 +17,10 @@ export class AppComponent {
   protected authService = inject(AuthService);
 
   private router = inject(Router);
+  constructor() {
 
+    this.authService.startTokenWatcher();
+  }
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);

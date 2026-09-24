@@ -1,10 +1,19 @@
 <div class="header">
-  <button
-    mat-raised-button
-    color="primary"
-    routerLink="/create">
-    Ajouter une commande
-  </button>
+
+  <nav class="breadcrumb">
+    <a routerLink="/accueil">Accueil</a>
+    <span> > </span>
+    <span class="page-title">Liste des commandes</span>
+  </nav>
+
+  <div class="header-actions">
+    <button
+      mat-flat-button
+      color="primary"
+      routerLink="/create">
+      Ajouter une commande
+    </button>
+  </div>
 </div>
 
 <mat-card

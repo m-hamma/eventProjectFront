@@ -18,62 +18,57 @@ export class AuthService {
   login(request: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.API_URL}/login`, request).pipe(
       tap((response) => {
-        localStorage.setItem('token', response.token);
-
-        localStorage.setItem('userName', response.userName);
-
-        localStorage.setItem('role', response.role);
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('userName', response.userName);
+        sessionStorage.setItem('role', response.role);
       }),
     );
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
-    localStorage.removeItem('role');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userName');
+    sessionStorage.removeItem('role');
 
     this.router.navigate(['/login']);
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    const token = this.getToken();
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+
+      return Date.now() < payload.exp * 1000;
+    } catch {
+      return false;
+    }
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   getUserName(): string | null {
-    return localStorage.getItem('userName');
+    return sessionStorage.getItem('userName');
   }
 
   getRole(): string | null {
-    return localStorage.getItem('role');
+    return sessionStorage.getItem('role');
   }
 
   startTokenWatcher(): void {
     setInterval(() => {
-      const token = this.getToken();
-
-      if (!token) {
-        return;
-      }
-
-      try {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-
-        const expiration = payload.exp * 1000;
-
-        if (Date.now() >= expiration) {
-          this.logout();
-        }
-      } catch (error) {
-        console.error('Token JWT invalide', error);
-
+      if (!this.isAuthenticated()) {
         this.logout();
       }
     }, 60000);
   }
+
   hasRole(role: string): boolean {
     return this.getRole() === role;
   }
