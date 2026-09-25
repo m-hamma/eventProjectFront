@@ -7,11 +7,16 @@ import { MatCardModule } from '@angular/material/card';
 import { OrderService } from '../services/order.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatChipsModule } from '@angular/material/chips';
+import { NgClass } from '@angular/common';
+import { MatPaginatorModule,PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-orders',
   imports: [
-    MatButtonModule,CommonModule,
+    MatButtonModule,MatPaginatorModule,
+    NgClass,
+    CommonModule,
+    MatChipsModule,
     RouterLink,
     MatToolbarModule,
     MatCardModule,
@@ -22,24 +27,17 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class OrdersComponent implements OnInit {
   commandes: Order[] = [];
-
+  totalElements = 0;
+  pageIndex = 0;
+  pageSize = 5;
   constructor(
     private orderService: OrderService,
     private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
-    this.orderService.getOrders().subscribe({
-      next: (data) => {
-        console.log('data avant', data);
-
-        this.commandes = [...data];
-
-        this.cdr.detectChanges();
-
-        console.log('data apres', this.commandes);
-      },
-    });
+    console.log('NGONINIT');
+    this.loadOrders();
   }
 
   delete(id: number): void {
@@ -59,5 +57,36 @@ export class OrdersComponent implements OnInit {
         alert('Impossible de supprimer cette commande car une facture lui est associée.');
       },
     });
+  }
+  getTotal(order: any): number {
+    if (!order.items) {
+      return 0;
+    }
+
+    return order.items.reduce(
+      (total: number, item: any) => total + item.quantity * item.unitPrice,
+      0,
+    );
+  }
+  loadOrders(): void {
+    console.log('LOAD ORDERS');
+    this.orderService.getOrders(this.pageIndex, this.pageSize).subscribe({
+      next: (data: any) => {
+        console.log('DATA', data);
+
+        this.commandes = data.content;
+        this.totalElements = data.totalElements;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('ERROR', err);
+      },
+    });
+  }
+  onPageChange(event: PageEvent): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+
+    this.loadOrders();
   }
 }

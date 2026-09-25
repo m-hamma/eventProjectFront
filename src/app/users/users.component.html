@@ -4,10 +4,23 @@
   Gestion des utilisateurs
 </nav>
 
-<p>Nombre : {{ users.length }}</p>
+<h2>Utilisateurs</h2>
 
-<ul>
+<p>
+  Nombre affiché : {{ users.length }}
+</p>
+
+<ul class="user-list">
   <li *ngFor="let user of users">
-    {{ user.userName }} - {{ user.role }}
+    <strong>{{ user.userName }}</strong>
+    <span>{{ user.role }}</span>
   </li>
 </ul>
+
+<app-pagination
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  [pageSize]="pageSize"
+  (pageChanged)="onPageChanged($event)"
+  (pageSizeChanged)="onPageSizeChanged($event)">
+</app-pagination>

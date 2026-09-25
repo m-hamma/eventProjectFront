@@ -1,15 +1,24 @@
 <nav class="breadcrumb">
   <a routerLink="/accueil">Accueil</a>
   <span> > </span>
-
-  Gestion des roles
-
+  Gestion des rôles
 </nav>
 
-<p>Nombre : {{ roles.length }}</p>
+<h2>Rôles</h2>
+
+<p>Nombre affiché : {{ roles.length }}</p>
 
 <ul>
   <li *ngFor="let role of roles">
-    {{ role.code }} - {{ role.libelle }}
+    <strong>{{ role.code }}</strong>
+    - {{ role.libelle }}
   </li>
 </ul>
+
+<app-pagination
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  [pageSize]="pageSize"
+  (pageChanged)="onPageChanged($event)"
+  (pageSizeChanged)="onPageSizeChanged($event)">
+</app-pagination>

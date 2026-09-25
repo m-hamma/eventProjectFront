@@ -1,0 +1,25 @@
+.user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-list li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-list li:hover {
+  background-color: #f5f5f5;
+}
+
+.breadcrumb {
+  margin-bottom: 1rem;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+.user-list li {
+  display: flex;
+  justify-content: space-between;
+}

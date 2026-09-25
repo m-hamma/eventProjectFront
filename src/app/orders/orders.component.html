@@ -14,48 +14,73 @@
       Ajouter une commande
     </button>
   </div>
+
+</div>
+
+<div class="summary">
+  {{ totalElements }} commande(s)
 </div>
 
 <mat-card
   *ngFor="let order of commandes"
-  class="order-card">
+  class="order-card border">
 
   <div class="order-item">
 
     <div class="order-info">
-      <h3>{{ order.client?.nom }}</h3>
 
-      <p>
-        {{ order.status }} • Créée le :
+      <div class="title-row">
+
+        <h3>{{ order.client?.nom }}</h3>
+
+        <span
+          class="status-chip"
+          [ngClass]="order.status?.toLowerCase()">
+          {{ order.status }}
+        </span>
+        <div class="order-total">
+          Total :
+          {{ getTotal(order) | number:'1.2-2' }} €
+        </div>
+      </div>
+
+      <p class="created-at">
+        Créée le :
         {{ order.createdAt | date:'dd/MM/yyyy HH:mm' }}
       </p>
-      <div *ngIf="order.items?.length">
-        <p>
-          <strong>Articles :</strong>
-          <span *ngFor="let item of order.items; let last = last">
-      {{ item.product?.code }} - {{ item.product?.libelle }}
-      ({{ item.quantity }} × {{ item.unitPrice }} €){{ !last ? ', ' : '' }}
-    </span>
-        </p>
-      </div>
+
+
+
     </div>
 
     <div class="actions">
+
       <button
         mat-icon-button
         color="primary"
         [routerLink]="['/orders/update', order.id]">
+
         <mat-icon>edit</mat-icon>
+
       </button>
 
       <button
         mat-icon-button
         color="warn"
         (click)="delete(order.id!)">
+
         <mat-icon>delete</mat-icon>
+
       </button>
+
     </div>
 
   </div>
 
 </mat-card>
+<mat-paginator
+  [length]="totalElements"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 20,25,30]"
+  (page)="onPageChange($event)">
+</mat-paginator>

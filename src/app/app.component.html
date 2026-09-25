@@ -1,4 +1,4 @@
-@if (authService.isAuthenticated()) {
+@if (isAuthenticated()) {
 
 <mat-toolbar color="primary">
 
@@ -6,40 +6,53 @@
 
 
   <span class="spacer"></span>
-
+  <select
+    #lang
+    (change)="changeLanguage(lang.value)">
+    <option value="fr">FR</option>
+    <option value="en">EN</option>
+  </select>
   <a mat-button
      routerLink="/accueil"
      routerLinkActive="active-link"
      [routerLinkActiveOptions]="{ exact: true }">
-    Accueil
+    {{ 'MENU.HOME' | translate }}
   </a>
 
   <a mat-button
      routerLink="/orders"
      routerLinkActive="active-link">
-    Liste
+    {{ 'MENU.LIST' | translate }}
   </a>
 
   <a mat-button
      routerLink="/search"
      routerLinkActive="active-link">
-    Recherche
+    {{ 'MENU.SEARCH' | translate }}
   </a>
-  @if (authService.hasRole('ADMIN')) {
+
+  @if (isAdmin()) {
   <a mat-button
      routerLink="/users"
-     routerLinkActive="active-link">Users</a>
+     routerLinkActive="active-link">
+    {{ 'MENU.USERS' | translate }}
+  </a>
+
   <a mat-button
      routerLink="/roles"
-     routerLinkActive="active-link">Roles</a>
+     routerLinkActive="active-link">
+    {{ 'MENU.ROLES' | translate }}
+  </a>
   }
+  <span>{{ getUserName() }}</span>
+   
 
-  <span>{{ authService.getUserName() }}</span>
-  &nbsp;
+
   <button
     mat-flat-button
-    color="primary" (click)="logout()" class="">
-    Déconnexion
+    color="primary"
+    (click)="logout()">
+    {{ 'MENU.LOGOUT' | translate }}
   </button>
 
 </mat-toolbar>

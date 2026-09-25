@@ -1,0 +1,10 @@
+{
+  "MENU": {
+    "HOME": "Accueil",
+    "LIST": "Commandes",
+    "SEARCH": "Recherche",
+    "USERS": "Utilisateurs",
+    "ROLES": "Rôles",
+    "LOGOUT": "Déconnexion"
+  }
+}

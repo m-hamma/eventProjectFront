@@ -1,0 +1,10 @@
+{
+  "MENU": {
+    "HOME": "Home",
+    "LIST": "Orders",
+    "SEARCH": "Search",
+    "USERS": "Users",
+    "ROLES": "Roles",
+    "LOGOUT": "Logout"
+  }
+}
